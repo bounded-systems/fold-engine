@@ -1,0 +1,14 @@
+{
+  "name": {
+    "type": "name",
+    "value": "Fold Engine"
+  },
+  "tagline": {
+    "type": "tagline",
+    "value": "Linked-data engine for an Obsidian vault."
+  },
+  "description": {
+    "type": "meta",
+    "value": "JSON-LD and schema.org structure over Obsidian notes — turns a personal knowledge vault into linked, machine-readable data."
+  }
+}
