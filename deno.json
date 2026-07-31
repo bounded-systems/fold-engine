@@ -34,8 +34,8 @@
     "ajv": "npm:ajv@^8.17.1",
     "ajv-formats": "npm:ajv-formats@^3.0.1",
     "deno-dom-wasm": "https://deno.land/x/deno_dom/deno-dom-wasm.ts",
-    "lume/": "https://deno.land/x/lume@v3.1.4/",
-    "lume/plugins/": "https://deno.land/x/lume@v3.1.4/plugins/",
+    "lume/": "https://deno.land/x/lume@v3.2.5/",
+    "lume/plugins/": "https://deno.land/x/lume@v3.2.5/plugins/",
     "zod": "npm:zod@^3.25.76"
   },
   "lint": {
