@@ -1,0 +1,9 @@
+# Acceptances for the shared osv-scan lane. See ci-workflows/REMEDIATION.md.
+#
+# One entry. Everything else this repo was failing on (8 of 9 advisories,
+# including a CVSS 8.7) was fixed at rungs 1 and 2 rather than accepted.
+
+[[IgnoredVulns]]
+id = "GHSA-6v5v-wf23-fmfq"
+ignoreUntil = 2026-10-31
+reason = "markdown-it 14.1.1, fixed in 14.2.0. Reached only through lume, whose deps/markdown_it.ts pins npm:markdown-it@14.1.1 EXACTLY — checked v3.2.2, v3.2.4 and v3.2.5, the newest published, and all three carry the same exact pin, so rung 2 is exhausted. Rung 3 was attempted and does not apply: promoting markdown-it to a direct import in deno.json leaves the lock resolving 14.1.1, because an import-map entry can only redirect a BARE specifier and lume's is fully qualified. Nothing in src/ imports markdown-it directly. Remaining options were this or vendoring lume. Severity 5.3, the lowest of the nine findings this lane surfaced here. REMOVE THIS when lume's deps/markdown_it.ts moves to >=14.2.0 — check with: curl -s https://deno.land/x/lume@<newest>/deps/markdown_it.ts | grep markdown-it, and get <newest> from https://cdn.deno.land/lume/meta/versions.json"
