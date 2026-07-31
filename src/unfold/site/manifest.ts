@@ -1,5 +1,7 @@
 import { DOMParser, type HTMLDocument } from "deno-dom-wasm";
 import { normalizeSiteUrl } from "./site_url.ts";
+import type { VaultNode } from "../inputs/jsonld/types.ts";
+import { loadVault } from "../inputs/jsonld/loader.ts";
 
 type ManifestPage = {
   path: string;
@@ -207,6 +209,15 @@ const requireVaultPath = (value?: string): string => {
     throw new Error("VAULT_PATH is required for vault JSON-LD loading.");
   }
   return raw;
+};
+
+/// Unlike its siblings above, this does not throw: `defaultSiteUrl` already
+/// supplies a normalized SITE_URL-or-placeholder, so an absent site URL has a
+/// sensible answer. The fallback argument carries the WebSite node's url when
+/// building from the vault graph.
+const requireSiteUrl = (value?: string, fallback?: string): string => {
+  const raw = value?.trim() || fallback?.trim();
+  return raw ? normalizeSiteUrl(raw) : defaultSiteUrl();
 };
 
 const hasJsonLdType = (node: VaultNode, type: string): boolean => {
