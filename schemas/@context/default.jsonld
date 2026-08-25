@@ -2,7 +2,7 @@
   "@context": [
     "../../schemas/schema-org/releases/29.4/schemaorgcontext.jsonld",
     {
-      "basis": "https://example.org/vocab/basis#",
+      "basis": "https://bounded.tools/ns/basis#",
       "id": "@id",
       "type": "@type",
       "title": "schema:name",

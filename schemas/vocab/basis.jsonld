@@ -2,38 +2,38 @@
   "@context": "../@context/basis.jsonld",
   "@graph": [
     {
-      "@id": "https://example.org/vocab/basis#Fold",
+      "@id": "https://bounded.tools/ns/basis#Fold",
       "@type": ["rdfs:Class", "skos:Concept"],
       "label": "Fold",
       "definition": "A transformation that preserves structure while reducing dimensionality",
       "broader": {
-        "@id": "https://example.org/vocab/basis#Transform"
+        "@id": "https://bounded.tools/ns/basis#Transform"
       },
       "related": [
         {
-          "@id": "https://example.org/vocab/basis#Unfold"
+          "@id": "https://bounded.tools/ns/basis#Unfold"
         },
         {
-          "@id": "https://example.org/vocab/basis#Projection"
+          "@id": "https://bounded.tools/ns/basis#Projection"
         }
       ]
     },
     {
-      "@id": "https://example.org/vocab/basis#Unfold",
+      "@id": "https://bounded.tools/ns/basis#Unfold",
       "@type": ["rdfs:Class", "skos:Concept"],
       "label": "Unfold",
       "definition": "A transformation that expands structure by increasing dimensionality",
       "broader": {
-        "@id": "https://example.org/vocab/basis#Transform"
+        "@id": "https://bounded.tools/ns/basis#Transform"
       },
       "related": [
         {
-          "@id": "https://example.org/vocab/basis#Fold"
+          "@id": "https://bounded.tools/ns/basis#Fold"
         }
       ]
     },
     {
-      "@id": "https://example.org/vocab/basis#Transform",
+      "@id": "https://bounded.tools/ns/basis#Transform",
       "@type": ["rdfs:Class", "skos:Concept"],
       "label": "Transform",
       "definition": "A mapping from one structure to another"
