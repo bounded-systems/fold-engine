@@ -127,7 +127,7 @@ import { type DefinedTerm, DefinedTermSchema } from "./defined_term.ts";
 
 const term: DefinedTerm = {
   "@type": "schema:DefinedTerm",
-  "@id": "https://example.org/vocab/basis#Fold",
+  "@id": "https://bounded.tools/ns/basis#Fold",
   "name": "Fold",
 };
 ```
@@ -139,7 +139,7 @@ import { type DefinedTermSet, DefinedTermSetSchema } from "./defined_term_set.ts
 
 const termSet: DefinedTermSet = {
   "@type": "schema:DefinedTermSet",
-  "@id": "https://example.org/vocab/basis",
+  "@id": "https://bounded.tools/ns/basis",
   "name": "Basis Vocabulary",
 };
 ```

@@ -98,7 +98,7 @@ VAULT_BRANCH=main
   "@context": "../@context/basis.jsonld",
   "@graph": [
     {
-      "@id": "https://example.org/vocab/basis#Concept",
+      "@id": "https://bounded.tools/ns/basis#Concept",
       "@type": ["rdfs:Class", "skos:Concept"],
       "label": "Concept",
       "definition": "A conceptual entity"
