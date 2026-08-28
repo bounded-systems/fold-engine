@@ -1,19 +1,39 @@
 {
   "env": {
-    "CLAUDE_CODE_SUBAGENT_MODEL": "haiku",
     "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "75",
-    "CLAUDE_CODE_ENABLE_TELEMETRY": "1"
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "1",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "haiku"
   },
   "hooks": {
-    "SessionStart": [
+    "PreCompact": [
       {
-        "matcher": "",
         "hooks": [
           {
-            "type": "command",
-            "command": "bash .claude/inject-org-context.sh"
+            "command": "bd prime",
+            "type": "command"
           }
-        ]
+        ],
+        "matcher": ""
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "bash .claude/inject-org-context.sh",
+            "type": "command"
+          }
+        ],
+        "matcher": ""
+      },
+      {
+        "hooks": [
+          {
+            "command": "bd prime",
+            "type": "command"
+          }
+        ],
+        "matcher": ""
       }
     ]
   },
