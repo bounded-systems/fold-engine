@@ -32,6 +32,18 @@
     "@std/fs/walk": "jsr:@std/fs@^1.0.22/walk",
     "@std/path": "jsr:@std/path@^1.1.4",
     "ajv": "npm:ajv@^8.17.1",
+    // Rung-3 override (ci-workflows REMEDIATION.md): GHSA-7p8r-x3mc-p8w7 (7.5,
+    // fast-uri 3.1.4, fixed 3.1.5). Reached only through ajv, which declares
+    // fast-uri ^3.0.1 — so the fix is already in range and rung 1 does not apply.
+    // Rung 2 was tried and does not move it: `deno outdated --update` advances ajv
+    // ^8.17.1 -> ^8.20.0, and 8.20.0 declares the same ^3.0.1, but the lock keeps
+    // its stale fast-uri 3.1.4 entry regardless. Unlike the markdown-it and esbuild
+    // entries in osv-scanner.toml, rung 3 DOES apply here: ajv's specifier is bare,
+    // not a fully-qualified lume URL, so an import-map entry can redirect it.
+    // Accepting this one would have been wrong — it is fixable, and 7.5 is the
+    // highest severity this lane has flagged here since the linkify-it 8.7.
+    // Remove once deno advances the transitive unaided.
+    "fast-uri": "npm:fast-uri@^3.1.6",
     "ajv-formats": "npm:ajv-formats@^3.0.1",
     "deno-dom-wasm": "https://deno.land/x/deno_dom/deno-dom-wasm.ts",
     "lume/": "https://deno.land/x/lume@v3.2.5/",
