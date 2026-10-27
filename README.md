@@ -175,6 +175,29 @@ that this URL is one node in a knowledge graph, which is the point of every
 atomic page here. (Tracked in fold-engine as "Define WebPage subtypes for vault
 roles".)
 
+## Identity: URIs for things, CIDs for versions
+
+- **An entity keeps a stable HTTP URI** (Cool URIs: `https://…/notes/<id>`).
+  That is what a concept, a slot or a fold _is_.
+- **Each version of its bytes gets a CIDv1** (multibase + multicodec +
+  multihash, SHA-256). That is what a particular snapshot _is_. A CID is never
+  used as the entity's `@id`, or every edit would mint a new thing.
+- **Canonicalize before hashing:** JSON-LD is canonicalized with RDF Dataset
+  Canonicalization (RDFC-1.0, W3C 2024, formerly URDNA2015), or encoded as
+  DAG-JSON/DAG-CBOR, which fix key order. Otherwise two equal documents hash
+  differently.
+- **Link versions** with `prov:wasDerivedFrom` (previous version → next) and
+  `prov:generatedAtTime`. Record the hash with `schema:sha256` or
+  `spdx:checksum`. PROV-O has no `contentHash` property.
+- **The fold identity hash is a CID** over the set declaration plus the
+  projection state (see "Rendering a fold"). A rendered Markdown or page is a
+  derived artifact with its own CID, linked to the CIDs of the slots it shows:
+  determinism you can check.
+- **A whole publish is one root CID:** a Merkle DAG (or a CAR file) over every
+  object, so two publishes differ provably and agents can pin a snapshot.
+- **A CID names bytes; it doesn't keep them.** Availability still needs a pin (a
+  local node, a CAR in the repo, or a pinning service).
+
 ## Source of truth: vault today, log next
 
 Unfold treats the Obsidian vault as the single source of truth. Fold OS makes
