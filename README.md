@@ -61,6 +61,38 @@ the log wins.
 | Budgets                              | **lone** `cognitive_budget.ts` (W3C COGA), Allie `load.ts`, conformance-kit `COGA.md`                                                                                                                                                                                        | one cited budget table                                                                                                |
 | Microcopy                            | **brand** `content/strings.json`                                                                                                                                                                                                                                             | bounded-systems/brand#66 open                                                                                         |
 
+## Fold and unfold
+
+A Basis fold is **not** a fold in the functional-programming sense. There, a
+fold (a catamorphism) consumes a structure into a summary, which is exactly what
+a Basis fold must never do. A Basis fold is closer to a **zipper** (Huet 1997):
+a focus on a few items, carrying the path back to the rest of the structure, so
+nothing is lost and you can move anywhere.
+
+Unfold therefore comes in two kinds, and they must not be confused:
+
+1. **Structural unfold (traversal).** It widens or moves the window over data
+   that already exists: the next 4 items, a child, a parent, a linked fold. It
+   reveals; it never creates. It's a view operation, so it emits no log event.
+   Termination is the budget: each step shows about 4 items, and the trail
+   offers the next step (a lazy, coinductive slice), so even very large or
+   open-ended data unfolds one bounded step at a time.
+2. **Generative unfold (an anamorphism).** It produces elements from a seed and
+   a rule, `u: seed → [e0, e1, …]` with a stop predicate `p` (for example, even
+   numbers up to N: seed 0, `u(x) = x + 2`, stop when `x > N`). Use it only when
+   a set is _defined_ by a rule rather than stored. Its output is **derived**:
+   the slots are marked as generated, record the generator, seed and stop
+   predicate, and are authored by whoever ran it. They are logged like any other
+   write and never replace stored data. Unbounded generators are only shown
+   through structural unfold, one budgeted slice at a time.
+
+The test for any operation: does it reveal stored values, or produce new ones?
+Revealing is unfold (1). Producing is unfold (2), and must be labelled.
+
+(Naming note: this repo's compiler is called **Unfold**. In these terms it is a
+projection: it renders the vault into typed records and pages. It is neither
+kind of unfold above.)
+
 ## Rendering a fold
 
 ```
