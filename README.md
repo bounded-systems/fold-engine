@@ -157,6 +157,24 @@ Set Declaration ──▶ Schema Validation ──▶ Projection Engine ──�
 - **The proxy rejects** malformed folds, malformed slots and unvalidated
   inference results.
 
+## Page types (schema.org)
+
+The page is the projection; the entity is the thing. A page's type says what
+kind of view it is, and `mainEntity` says what it is about.
+
+| Page                                                                  | Type             | `mainEntity`                                                                                           |
+| --------------------------------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------ |
+| One node with identity: a concept, a slot, a tool, a claim, a dataset | `ItemPage`       | the node itself: `DefinedTerm`, `CreativeWork`, `Dataset`, `SoftwareSourceCode`, `ScholarlyArticle`, … |
+| A fold: a view over several nodes, an index, a hub, search results    | `CollectionPage` | none; its items are linked by `hasPart` / `ItemList`, each to its own `ItemPage`                       |
+| How the system works (this README, design docs)                       | `AboutPage`      | the project                                                                                            |
+
+Schema.org's `ItemPage` example ("a particular product or hotel") is an
+illustration, not a limit: it is `Thing → CreativeWork → WebPage → ItemPage`,
+defined only by being about one primary entity. Using it tells graph readers
+that this URL is one node in a knowledge graph, which is the point of every
+atomic page here. (Tracked in fold-engine as "Define WebPage subtypes for vault
+roles".)
+
 ## Source of truth: vault today, log next
 
 Unfold treats the Obsidian vault as the single source of truth. Fold OS makes
