@@ -192,6 +192,46 @@ between devices continues where you were.
   publishes what it showed, so the flow log records what reached you, where and
   when.
 
+### Time and the body
+
+The person is the thing being designed for, body included. Load isn't only how
+much is on the screen; it also depends on what the person has seen before, how
+long they've been at it, and how often things change. Allie already models this
+(what was seen, and when); Fold OS takes the same temporal model.
+
+- **Seen before costs less.** Items already seen, or similar to ones seen, are
+  cheaper to take in (familiarity, processing fluency, expertise chunking). The
+  cost model discounts them, and the fold marks what's new since you last
+  looked, so new things stand out and old ones recede. It never hides old items;
+  it only lowers their weight.
+- **Unfamiliar ground costs more.** A new kind of item, an unfamiliar layout, or
+  a context you rarely visit raises effort and stress. Keep layouts stable,
+  introduce new kinds one at a time, and spend more of the budget on them.
+- **Repetition and duration tire.** The same alert again, or a long unbroken
+  session, wears attention down (vigilance decrement, alarm fatigue). Repeated
+  notices fold into the first one with a time stamp per occurrence (each still
+  enterable, never a bare count). The budget per window shrinks as a session
+  gets longer, and long stretches suggest a break.
+- **Change has a cost.** Every refresh, redraw or moving item pulls attention,
+  and a change that happens out of sight may be missed. Each surface gets a
+  change budget: a minimum interval between updates of the same view, changes
+  batched into versions, nothing animated, and "what changed" shown by reference
+  when you return. The fleet page republishing every few minutes counts against
+  this.
+- **Calm by default.** Information starts in the periphery (TRMNL, a badge) and
+  moves to the centre of attention only when it needs to (calm technology).
+- **Measured, then tuned.** The model starts from the literature and is tuned on
+  the person: their effort ratings, how long they take, what they skip, and when
+  they stop. Those signals are observations, never a judgement of the person.
+
+These sources are to be verified and added to facto with the others before they
+ground any number. Candidates: processing fluency (Reber, Schwarz & Winkielman
+2004), mere exposure (Zajonc 1968), vigilance decrement (Mackworth 1948), alarm
+fatigue (Sendelbach & Funk 2013), change blindness (Simons & Levin 1997),
+attention capture by abrupt onsets (Yantis & Jonides 1984), allostatic load
+(McEwen 1998), calm technology (Weiser & Brown 1996). The arousal–performance
+curve (Yerkes–Dodson) is contested and is used only as a direction, if at all.
+
 ### What exists for it
 
 Web Push to installed pages works on iPhone and iPad (iOS/iPadOS 16.4+), the
