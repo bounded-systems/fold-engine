@@ -148,6 +148,99 @@ Set Declaration ──▶ Schema Validation ──▶ Projection Engine ──�
   `agent:`, and validated and logged. It may never _substitute_ or fill in data
   in place: missing data stays visibly missing.
 
+## One world, every device
+
+Fold OS is a single world model (the log and its graph) that its person lives in
+across devices. Each device is a **projection** of the same world, sized to what
+that channel can carry. No device has its own copy of the truth, and moving
+between devices continues where you were.
+
+| Surface                      | What a fold is there                                 | Budget (start tight, then iterate with ratings)                                     | Input                               |
+| ---------------------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------- |
+| **Apple Watch**              | one item and its next action; a haptic to arrive     | 1–2 items                                                                           | tap, Digital Crown, dictation       |
+| **iPhone**                   | a fold of the few things that matter now             | ≤4 items visible (Cowan), ≤5 main choices (COGA 4.6.3)                              | touch, VoiceOver, passkey           |
+| **iPad**                     | the working fold, with room for one level of context | ≤5 main choices; each item enterable                                                | touch, keyboard, VoiceOver, passkey |
+| **Mac**                      | the full surface (clax, Allie)                       | ≤5 main choices on the first screen; everything reachable                           | keyboard, Allie, VoiceOver          |
+| **TRMNL (e-ink)**            | one ambient glance: needs you, what's moving         | ≤5 items, large type, black and white; redrawn on events                            | none (read-only)                    |
+| **Audio** (AirPods, speaker) | a spoken fold, heard in order                        | 1–3 items per utterance: speech is serial and fades, so it holds less than a screen | voice, a tap to hear more           |
+
+### Rules across devices
+
+- **One focus, synced.** The fold's focus (where you are in the zipper) is view
+  state, kept apart from the log and synced across devices, so picking up the
+  iPad continues where the phone left off. Moving focus never writes data.
+- **One attention budget.** Every notification, glance and spoken item is a
+  request on the person and spends from the same budget as the Human Batch API
+  (human units, attention seconds, ~4 open items at once). A device doesn't get
+  its own allowance.
+- **Escalate gently, by need.** Ambient first (TRMNL, a quiet badge), then a
+  passive notification, then active, then time-sensitive. These map to iOS
+  notification interruption levels (passive, active, time-sensitive; critical is
+  never used). Presence, Focus modes and night mode hold everything except what
+  you've marked urgent.
+- **Audio has its own grammar.** It leads with what needs you and says one thing
+  at a time. It names the item's real value, never a count or a summary. A short
+  earcon (a distinct sound per kind of event) says what arrived before any
+  words, and you ask for more rather than hearing everything. AirPods can
+  announce notifications; the Watch relays the iPhone's with a haptic.
+- **Same accessibility everywhere.** VoiceOver on iPhone, iPad, Watch and Mac
+  reads the same fold structure as Allie; the AX tree is the interface on every
+  screen.
+- **Signed where it acts.** Approving and answering need a passkey on the device
+  in hand. Glances and audio never act on your behalf.
+- **Events through chitin.** Every device's view updates from chitin events and
+  publishes what it showed, so the flow log records what reached you, where and
+  when.
+
+### Time and the body
+
+The person is the thing being designed for, body included. Load isn't only how
+much is on the screen; it also depends on what the person has seen before, how
+long they've been at it, and how often things change. Allie already models this
+(what was seen, and when); Fold OS takes the same temporal model.
+
+- **Seen before costs less.** Items already seen, or similar to ones seen, are
+  cheaper to take in (familiarity, processing fluency, expertise chunking). The
+  cost model discounts them, and the fold marks what's new since you last
+  looked, so new things stand out and old ones recede. It never hides old items;
+  it only lowers their weight.
+- **Unfamiliar ground costs more.** A new kind of item, an unfamiliar layout, or
+  a context you rarely visit raises effort and stress. Keep layouts stable,
+  introduce new kinds one at a time, and spend more of the budget on them.
+- **Repetition and duration tire.** The same alert again, or a long unbroken
+  session, wears attention down (vigilance decrement, alarm fatigue). Repeated
+  notices fold into the first one with a time stamp per occurrence (each still
+  enterable, never a bare count). The budget per window shrinks as a session
+  gets longer, and long stretches suggest a break.
+- **Change has a cost.** Every refresh, redraw or moving item pulls attention,
+  and a change that happens out of sight may be missed. Each surface gets a
+  change budget: a minimum interval between updates of the same view, changes
+  batched into versions, nothing animated, and "what changed" shown by reference
+  when you return. The fleet page republishing every few minutes counts against
+  this.
+- **Calm by default.** Information starts in the periphery (TRMNL, a badge) and
+  moves to the centre of attention only when it needs to (calm technology).
+- **Measured, then tuned.** The model starts from the literature and is tuned on
+  the person: their effort ratings, how long they take, what they skip, and when
+  they stop. Those signals are observations, never a judgement of the person.
+
+These sources are to be verified and added to facto with the others before they
+ground any number. Candidates: processing fluency (Reber, Schwarz & Winkielman
+2004), mere exposure (Zajonc 1968), vigilance decrement (Mackworth 1948), alarm
+fatigue (Sendelbach & Funk 2013), change blindness (Simons & Levin 1997),
+attention capture by abrupt onsets (Yantis & Jonides 1984), allostatic load
+(McEwen 1998), calm technology (Weiser & Brown 1996). The arousal–performance
+curve (Yerkes–Dodson) is contested and is used only as a direction, if at all.
+
+### What exists for it
+
+Web Push to installed pages works on iPhone and iPad (iOS/iPadOS 16.4+), the
+approve page already installs, the Watch mirrors iPhone notifications, the TRMNL
+backend is being built, and chitin's presence and night mode are live. Not yet
+built: focus sync, the shared attention budget, the audio grammar and earcons,
+and native Watch or iOS apps (to be decided, after the web versions prove the
+shape).
+
 ## Principles
 
 1. **A fold is a window, never a digest.** It selects; it never summarizes,
